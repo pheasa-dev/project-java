@@ -23,7 +23,7 @@ public class Student implements Serializable {
         return "Student{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", dob='" + dob + '\'' +
+                ", dob='" + dob + '\''+
                 ", classes=" + classes +
                 ", subjects=" + subjects +
                 '}';

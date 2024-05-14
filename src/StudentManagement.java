@@ -10,6 +10,8 @@ public class StudentManagement {
     private static Scanner scanner = new Scanner(System.in);
     private static final int MIN_ID = 5000;
     private static final int MAX_ID = 6000;
+    String strRegex = "^[a-z A-Z]*$", regex = "\\d+", choice;
+    String doubleValidate = "^(-?)(0|([1-9][0-9]*))(\\.[0-9]+)?$";
 
     public static void main(String[] args) {
         loadData();
@@ -31,7 +33,6 @@ public class StudentManagement {
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t @Copyright by student ISTAD!!");
             System.out.println("======================================================================================================================");
             System.out.print("> Insert Option: ");
-            System.out.println();
             Scanner input = new Scanner(System.in);
             choice = input.nextInt();
 
