@@ -1,17 +1,20 @@
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 
 public class StudentManagement {
-    private static final int MIN_ID = 5000;
-    private static final int MAX_ID = 6000;
     private static List<Student> students = new ArrayList<>();
     private static final String DATA_FILE = "students.dat";
     private static Scanner scanner = new Scanner(System.in);
+    private static final int MIN_ID = 5000;
+    private static final int MAX_ID = 6000;
 
     public static void main(String[] args) {
         loadData();
         int choice;
-        int option = 0;
+        int option=0;
         System.out.println(" \t\t\t\t\t\t\t\t\t\t___ ____ _____  _    ____  \n" +
                 "\t\t\t\t\t\t\t\t\t\t|_ _/ ___|_   _|/ \\  |  _ \\ \n" +
                 "\t\t\t\t\t\t\t\t\t\t | |\\___ \\ | | / _ \\ | | | |\n" +
@@ -28,8 +31,9 @@ public class StudentManagement {
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t @Copyright by student ISTAD!!");
             System.out.println("======================================================================================================================");
             System.out.print("> Insert Option: ");
-            choice = scanner.nextInt();
-            scanner.nextLine();  // Consume newline
+            System.out.println();
+            Scanner input = new Scanner(System.in);
+            choice = input.nextInt();
 
             switch (choice) {
                 case 1 -> addStudent();
@@ -55,9 +59,7 @@ public class StudentManagement {
     }
 
     private static void addStudent() {
-        System.out.print("Enter Student ID: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();  // Consume newline
+        List<Student> studentControllers = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         System.out.println("> INSERT STUDENT'S INFO");
         int randomId = generateRandomId();
@@ -85,8 +87,7 @@ public class StudentManagement {
         String classes[] = new String[]{scanner.nextLine()};
         System.out.print("[!] You can insert multi subjects by splitting [,] symbol (s1,s2)\n[+] Student's Studied: ");
         String subjects[] = new String[]{scanner.nextLine()};
-        students.add(new Student(randomId, name, year, month, day, classes, subjects));
-        System.out.println("Student added successfully!!");
+        System.out.println("[*] STUDENT HAS BEEN ADDED SUCCESSFULLY.");
     }
 
     private static int generateRandomId() {
@@ -96,7 +97,7 @@ public class StudentManagement {
 
     private static void listAllStudents() {
         if (students.isEmpty()) {
-            System.out.println("No students found.");
+            System.out.println("Student Not found !!");
         } else {
             for (Student student : students) {
                 System.out.println(student);
@@ -133,9 +134,18 @@ public class StudentManagement {
         if (foundStudent != null) {
             System.out.print("Enter new name: ");
             String name = scanner.nextLine();
-            System.out.print("Enter new email: ");
-            String email = scanner.nextLine();
+            System.out.print("Enter new date of birth: ");
+            String dob = scanner.nextLine();
+            System.out.print("Enter new classes (comma separated): ");
+            String classesInput = scanner.nextLine();
+            List<String> classes = List.of(classesInput.split(","));
+            System.out.print("Enter new subjects (comma separated): ");
+            String subjectsInput = scanner.nextLine();
+            List<String> subjects = List.of(subjectsInput.split(","));
             foundStudent.setName(name);
+            foundStudent.setDob(dob);
+            foundStudent.setClasses(classes);
+            foundStudent.setSubjects(subjects);
             System.out.println("Student information updated.");
         } else {
             System.out.println("Student not found.");
